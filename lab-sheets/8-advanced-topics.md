@@ -33,7 +33,7 @@ Tracing through any web application is vital in identifying bottlenecks or actua
 
 Native browser telemetry is currently supported for [tracing](https://opentelemetry.io/docs/languages/js/getting-started/browser/), with other capabilities under development by the [Client Instrumentation SIG](https://docs.google.com/document/d/16Vsdh-DM72AfMg_FIt9yT9ExEWF4A_vRbQ3jRNBe09w/edit?tab=t.0#heading=h.yplevr950565).
 
-Specifically for AI by Vercel, by using the [Vercel Next.js OTel integration](https://nextjs.org/docs/app/building-your-application/optimizing/open-telemetry) combined with the [`experimental_telemetry` flag](https://sdk.vercel.ai/docs/ai-sdk-core/telemetry) you will be able to collect some tracing data. However, this hasn't been covered in detail due to it's currently experimental nature.  
+Specifically for AI by Vercel, by using the [Vercel Next.js OTel integration](https://nextjs.org/docs/app/building-your-application/optimizing/open-telemetry) combined with the [`experimental_telemetry` flag](https://sdk.vercel.ai/docs/ai-sdk-core/telemetry) you will be able to collect some tracing data. However, this hasn't been covered in detail due to its currently experimental nature.  
 
 ### Testing
 
