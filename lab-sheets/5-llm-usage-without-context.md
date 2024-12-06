@@ -44,7 +44,7 @@ You should receive a very wordy response! 😅
 To use AI and AI UI SDKs, the following npm installations are required:
 
 ```zsh
-npm install ai @ai-sdk/openai
+npm install ai
 ```
 
 4. Amend the page [oscar/page.tsx](../movie-rag/src/app/oscar/page.tsx) to use the [`useChat` hook](https://sdk.vercel.ai/docs/ai-sdk-ui/chatbot):

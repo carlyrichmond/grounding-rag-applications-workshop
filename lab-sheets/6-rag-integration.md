@@ -62,6 +62,8 @@ const clientArgs: ElasticClientArgs = {
     similarity: "cosine", //Default cosine
   },
 };
+
+const vectorStore = new ElasticVectorSearch(ollamaEmbeddings, clientArgs);
 ```
 
 4. Create the LLM prompt and initialize the Llama 3 model:
@@ -72,7 +74,7 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 // Initialise LLM and prompt
 const template = `You are a helpful movie trivial assistant that loves to recommend movies to people. 
       Check your knowledge base before answering any questions.
-      If no relevant information is found in the tool calls, respond, "I don't know, sorry!"
+      If no relevant information is found in the context, respond, "I don't know, sorry!"
       
       Please use the below context in your answer:
       <context>
@@ -100,14 +102,7 @@ import { StringOutputParser } from "@langchain/core/output_parsers";
  * @returns
  */
 export async function recommendMovies(question: string): Promise<ReadableStream> {
-  const filter = [
-    {
-      operator: "match",
-      field: "isAdult",
-      value: false,
-    },
-  ];
-  const retriever = vectorStore.asRetriever(3, filter);
+  const retriever = vectorStore.asRetriever(3);
 
   const customRagChain = await createStuffDocumentsChain({
     llm: llm,
@@ -152,9 +147,7 @@ export async function POST(req: Request) {
     return LangChainAdapter.toDataStreamResponse(stream);
   } catch (e) {
     console.error(e);
-    return {
-      message: errorMessage,
-    };
+    return Response.error();
   }
 }
 ```
