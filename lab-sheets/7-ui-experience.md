@@ -25,7 +25,7 @@ export default function Chat() {
         {/* messages mapping omitted **/}
 
       { isLoading && (
-        <div>
+        <div className="spinner__container">
           <Spinner />
         </div>
       ) }
@@ -55,7 +55,7 @@ export default function Chat() {
         {/* messages mapping omitted **/}
 
       { isLoading && (
-        <div>
+        <div className="spinner__container">
           <Spinner />
           <button id="stop__button" type="button" onClick={() => stop()}>
             Stop

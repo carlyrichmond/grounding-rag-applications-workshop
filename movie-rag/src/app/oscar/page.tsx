@@ -19,7 +19,7 @@ export default function Chat() {
       </div>
 
       {isLoading && (
-        <div>
+        <div className="spinner__container">
           <Spinner />
           <button id="stop__button" type="button" onClick={() => stop()}>
             Stop
