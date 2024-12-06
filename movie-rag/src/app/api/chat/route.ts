@@ -1,28 +1,25 @@
-import { LangChainAdapter } from 'ai';
-import { recommendMovies } from "../../lib/movie-finder";
+import { createOllama } from 'ollama-ai-provider';
+import { streamText } from 'ai';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
+const ollama = createOllama({
+  baseURL: 'http://localhost:11434/api', // Default
+});
+
 export async function POST(req: Request) {
   const { messages } = await req.json();
-  const errorMessage = "I don't know what you're talking about, HAL.";
-
-  if (messages.length === 0) {
-    return {
-      message: errorMessage,
-    }
-  }
-
+  
   try {
-    const question: string = messages[messages.length - 1].content;
-    const stream = await recommendMovies(question);
-    
-    return LangChainAdapter.toDataStreamResponse(stream);
-  } catch (e) {
+    const result = streamText({
+      model: ollama('llama3'),
+      messages
+    });
+  
+    return result.toDataStreamResponse();
+  } catch(e) {
     console.error(e);
-    return {
-      message: errorMessage,
-    };
+    return { message: "Oscar is currently watching a movie. Please try again later!" }
   }
 }
