@@ -7,7 +7,7 @@ export default function Card(props: { movie: MovieDocument }) {
       <div className="wrapper">
         <div className="image">
           <div className="poster">
-            <img loading="lazy" className="poster" src={props.movie.metadata.posterPath} alt={props.movie.metadata.title} />
+            <img loading="lazy" className="poster" src={props.movie.metadata.poster_path} alt={props.movie.metadata.title} />
           </div>
         </div>
         <div className="details">
@@ -17,12 +17,12 @@ export default function Card(props: { movie: MovieDocument }) {
                 <h2 dangerouslySetInnerHTML={{ __html: props.movie.metadata.title}}/>
               </div>
               <span className="release_date">
-                { new Date(props.movie.metadata.releaseDate) > new Date() ? 'Releasing ' : 'Released '}
+                { new Date(props.movie.metadata.release_date) > new Date() ? 'Releasing ' : 'Released '}
                 {new Intl.DateTimeFormat("en-GB", {
                   year: "numeric",
                   month: "long",
                   day: "2-digit"
-                }).format(new Date(props.movie.metadata.releaseDate))}</span>
+                }).format(new Date(props.movie.metadata.release_date))}</span>
             </div>
           </div>
           <div className="overview">

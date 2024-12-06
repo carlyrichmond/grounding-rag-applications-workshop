@@ -166,6 +166,27 @@ export async function getPopularMovies() {
 }
 ```
 
+9. Amend the `.api/popular` route to return the results of the query:
+
+```tsx
+export async function GET(req: Request) {
+  try {
+    const popularResponses = await getPopularMovies();
+    const movies = popularResponses?.hits.hits.map((doc) => {
+      return doc._source;
+    })
+
+    return Response.json({ results: movies });
+  } catch (e) {
+    console.error(e);
+    return Response.json({
+      results: [],
+      errorMessage: e
+    });
+  }
+}
+```
+
 ## Expected Result
 
 If all is well with connecting to Elasticsearch and finding the most popular movies, you will now have a row of results similar to the below:

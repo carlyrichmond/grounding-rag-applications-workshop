@@ -102,7 +102,7 @@ async function splitContentByOverview(
         vote_average: content.vote_average,
         vote_count: content.vote_count,
         isAdult: content.adult,
-        posterPath: `https://image.tmdb.org/t/p/original${content.poster_path}`,
+        poster_path: `https://image.tmdb.org/t/p/original${content.poster_path}`,
         chunk: index,
       },
     });
