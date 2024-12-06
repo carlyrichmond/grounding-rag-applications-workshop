@@ -98,7 +98,7 @@ const clientArgs: ElasticClientArgs = {
   indexName: process.env.INDEX_NAME,
   vectorSearchOptions: {
     engine: "hnsw",
-    similarity: "dot_product", //Default cosine
+    similarity: "cosine", //Default cosine
   },
 };
 
@@ -176,11 +176,11 @@ async function splitContentByOverview(
         title: content.title,
         original_language: content.original_language,
         popularity: content.popularity,
-        releaseDate: new Date(content.release_date),
+        release_date: new Date(content.release_date),
         vote_average: content.vote_average,
         vote_count: content.vote_count,
-        isAdult: content.adult,
-        posterPath: `https://image.tmdb.org/t/p/original${content.poster_path}`,
+        is_adult: content.adult,
+        poster_path: `https://image.tmdb.org/t/p/original${content.poster_path}`,
         chunk: index,
       },
     });
@@ -234,8 +234,8 @@ async function findRelevantMovies(text: string): Promise<Document[]> {
     const filter = [
       {
         operator: "match",
-        field: "isAdult",
-        value: false,
+        field: "title",
+        value: "dance",
       },
     ];
 
