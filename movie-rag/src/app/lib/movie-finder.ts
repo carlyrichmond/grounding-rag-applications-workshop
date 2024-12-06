@@ -57,12 +57,16 @@ const llm = new Ollama({
   maxRetries: 3
 });
 
+const chatHistory = new ChatMessageHistory();
+
 /**
  * Example search function to find relevant movies
  * @param text: prompt to be used for similarity search
  * @returns
  */
 export async function recommendMovies(question: string): Promise<ReadableStream> {
+  chatHistory.addUserMessage(question);
+
   const retriever = vectorStore.asRetriever(3);
 
   const customRagChain = await createStuffDocumentsChain({
@@ -75,7 +79,8 @@ export async function recommendMovies(question: string): Promise<ReadableStream>
 
   const stream = await customRagChain.stream({
     question: question,
-    context,
+    messages: await chatHistory.getMessages(),
+    context
   });
 
   return stream;
