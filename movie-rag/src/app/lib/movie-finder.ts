@@ -11,6 +11,8 @@ import { Client, type ClientOptions } from "@elastic/elasticsearch";
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 
+// Initialize Ollama embeddings for the query
+
 /**
  * Example search function to find relevant movies
  * @param text: prompt to be used for similarity search
