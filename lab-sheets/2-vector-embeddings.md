@@ -98,7 +98,7 @@ const clientArgs: ElasticClientArgs = {
   indexName: process.env.INDEX_NAME,
   vectorSearchOptions: {
     engine: "hnsw",
-    similarity: "dot_product", //Default cosine
+    similarity: "cosine", //Default cosine
   },
 };
 
@@ -179,7 +179,7 @@ async function splitContentByOverview(
         release_date: new Date(content.release_date),
         vote_average: content.vote_average,
         vote_count: content.vote_count,
-        adult: content.adult,
+        is_adult: content.adult,
         poster_path: `https://image.tmdb.org/t/p/original${content.poster_path}`,
         chunk: index,
       },
@@ -234,8 +234,8 @@ async function findRelevantMovies(text: string): Promise<Document[]> {
     const filter = [
       {
         operator: "match",
-        field: "isAdult",
-        value: false,
+        field: "title",
+        value: "dance",
       },
     ];
 
@@ -287,11 +287,11 @@ If all goes well you will have replaced your index with a set of movies enriched
       "title": "Deadpool & Wolverine",
       "original_language": "en",
       "popularity": 1722.492,
-      "release_date": "2024-07-24T00:00:00.000Z",
+      "releaseDate": "2024-07-24T00:00:00.000Z",
       "vote_average": 7.707,
       "vote_count": 4910,
-      "adult": false,
-      "poster_path": "https://image.tmdb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
+      "isAdult": false,
+      "posterPath": "https://image.tmdb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
       "chunk": 0
       },
     "text": "A listless Wade Wilson toils away in civilian life with his days as the morally flexible mercenary, Deadpool, behind him. But when his homeworld faces an existential threat, Wade must reluctantly"
