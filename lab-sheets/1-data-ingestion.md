@@ -148,7 +148,7 @@ async function main() {
 
     const character = "Venom";
     const topMovieResults = await findRelevantMovies(character);
-    const title = topMovieResults.length > 0 ? topMovieResults[0]._source.title : 'UNKNOWN';
+    const title = topMovieResults.length > 0 ? topMovieResults[0].title : 'UNKNOWN';
     
     console.log(`The movie featuring ${character} is: "${title}"`);
 }
