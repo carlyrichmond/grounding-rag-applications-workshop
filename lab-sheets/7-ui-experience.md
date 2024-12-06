@@ -129,7 +129,7 @@ If relevant we should also consider disabling the input element as well:
 
 ### History
 
-Often you may want to ensure the full message history is available to the LLM to take prior messages into consideration. There are [several ways to do this in Langchain](https://js.langchain.com/v0.2/docs/how_to/chatbots_memory/), with the simplest being you can add the messages to the prompt.
+Often you may want to ensure the full message history is available to the LLM to take prior messages into consideration. There are [several ways to do this in Langchain](https://js.langchain.com/docs/how_to/chatbots_memory/), with the simplest being you can add the messages to the prompt.
 
 Here we shall add the chat history to the chain in `movie-finder.ts`:
 
