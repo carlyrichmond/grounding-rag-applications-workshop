@@ -13,13 +13,13 @@ Remembering back to mathematics, a [vector](https://en.wikipedia.org/wiki/Vector
 
 All documents in our index, when converted into a vector representation, form a space where we can compare the proximity of a give query (also converted to a vector) to the documents in our vector space:
 
-![Star Wars Sample Vector Space](./screenshots/4/lab-4-what-is-a-vector.png)
+![Star Wars Sample Vector Space](./screenshots/2/lab-2-what-is-a-vector.png)
 
 Vector search is the fundamental algorithm that underpins semantic search, which you will have seen in search engines where you ask questions and they return relevant results whose keywords may not exactly match. 
 
 *kNN, or k-Nearest Neighbour* search, compares the embedded query with the documents in the vector space and returns the documents closest to the query through [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance):
 
-![kNN search overview](./screenshots/4/lab-4-knn-search-overview.png)
+![kNN search overview](./screenshots/2/lab-2-knn-search-overview.png)
 
 In this lab, we shall make use of the transformer model [`mxbai-embed-large`](https://ollama.com/library/mxbai-embed-large) downloaded to our machine using [Ollama](https://ollama.com/) alongside [Langchain](https://js.langchain.com/docs/introduction/) to generate embeddings for our documents. These documents shall also be ingested into Elasticsearch, replacing the previous index of documents.
 
